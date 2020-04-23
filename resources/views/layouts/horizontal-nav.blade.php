@@ -31,7 +31,21 @@
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('fidelizsms/files/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                            <span>Olivier Nauhand Allou</span>
+                            <span>
+                                @if(Auth::guard()->check())
+                                  {{ 
+                                    Auth::guard()->user()->nom.' '.Auth::guard()->user()->prenoms 
+                                  }}
+                                @elseif(Auth::guard('admin')->check())
+                                    {{ 
+                                      Auth::guard('admin')->user()->nom.' '.Auth::guard('admin')->user()->prenoms 
+                                    }}
+                                @elseif(Auth::guard('subuser')->check())
+                                  {{ 
+                                    Auth::guard('subuser')->user()->nom.' '.Auth::guard('subuser')->user()->prenoms 
+                                  }}
+                                @endif
+                            </span>
                             <i class="feather icon-chevron-down"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -47,9 +61,15 @@
                             </li>
                             <br>
                             <li>
-                                <a href="auth-normal-sign-in.html">
+                                <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                     <i class="feather icon-log-out" style="color: red"></i> Déconnexion
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>

@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Auth; 
 
 class Handler extends ExceptionHandler
 {
@@ -51,5 +53,19 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+                if ($request->expectsJson()) {
+                    return response()->json(['error' => 'Pas autorisé à faire cette démarche !'], 401);
+                }
+                if ($request->is('admin') || $request->is('admin/*')) {
+                    return redirect()->guest('/login/admin');
+                }
+                if ($request->is('subuser') || $request->is('sous-compte/*')) {
+                    return redirect()->guest('/login/sous-compte');
+                }
+                return redirect()->guest(route('login'));
     }
 }

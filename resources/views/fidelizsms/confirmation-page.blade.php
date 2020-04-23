@@ -101,7 +101,7 @@
                                         <div class="row">
                                             <div class="col-xl-4"></div>
                                             <div class="col-xl-4">
-                                                <button style="width:100%;" type="button" class="btn btn-md btn-danger float-right" id="btnsend"><i class="fas fa-arrow-left"></i> Précédent</button>
+                                                <a style="width:100%;" href="" type="button" class="btn btn-md btn-danger float-right"><i class="fas fa-arrow-left"></i> Précédent</a>
                                             </div>
                                             <div class="col-xl-4">
                                                 <button style="width:100%;" type="button" class="btn btn-md btn-success float-right" id="btnsend"><i class="fas fa-paper-plane"></i> Démarrer campagne</button>
