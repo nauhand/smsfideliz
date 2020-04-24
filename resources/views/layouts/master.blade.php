@@ -22,12 +22,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/css/bootstrap-select.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fidelizsms/files/assets/pages/chart/radial/css/radial.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/assets/css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    @toastr_css
 
     <style>
 
@@ -95,12 +95,11 @@
 <script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/files/assets/pages/dashboard/analytic-dashboard.min.js') }}"></script>
 <script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/files/assets/js/script.js') }}"></script>
 <script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/select2.min.js') }}"></script>
+<script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/toastr.js') }}"></script>
 <script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/bootstrap-select.min.js') }}"></script>
 <script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/bootstrap-select.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-@toastr_js
-@toastr_render
 
 
 <script>

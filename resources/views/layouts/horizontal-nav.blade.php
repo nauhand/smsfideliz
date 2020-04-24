@@ -30,7 +30,7 @@
                 <li class="user-profile header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('fidelizsms/files/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
+                            <img src="{{ URL::asset('ClientsImages/'.Auth::user()->image) }}" class="img-radius" alt="User-Profile-Image">
                             <span>
                                 @if(Auth::guard()->check())
                                   {{ 

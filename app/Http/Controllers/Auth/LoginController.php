@@ -64,7 +64,7 @@ class LoginController extends Controller
 
             if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
 
-                return redirect()->intended('/admin/tableau-de-bord/comptes/liste-clients');
+                return redirect()->intended('/admin/tableau-de-bord/');
             }
             return back()->withInput($request->only('username', 'remember'));
         }

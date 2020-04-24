@@ -22,10 +22,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/assets/pages/data-table/css/buttons.dataTables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/css/toastr.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/assets/css/jquery.mCustomScrollbar.css') }}">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    @toastr_css
 
 </head>
 
@@ -71,6 +71,7 @@
 <script src="{{ asset('fidelizsms/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}" type="7a7fa98a142edbdad3e24ddf-text/javascript"></script>
 <script src="{{ asset('fidelizsms/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}" type="7a7fa98a142edbdad3e24ddf-text/javascript"></script>
 <script src="{{ asset('fidelizsms/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}" type="7a7fa98a142edbdad3e24ddf-text/javascript"></script>
+<script type="7a7fa98a142edbdad3e24ddf-text/javascript" src="{{ asset('fidelizsms/js/toastr.js') }}"></script>
 <script type="7a7fa98a142edbdad3e24ddf-text/javascript" src="{{ asset('fidelizsms/files/bower_components/i18next/js/i18next.min.js') }}"></script>
 <script type="7a7fa98a142edbdad3e24ddf-text/javascript" src="{{ asset('fidelizsms/files/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
 <script type="7a7fa98a142edbdad3e24ddf-text/javascript" src="{{ asset('fidelizsms/files/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
@@ -80,8 +81,7 @@
 <script src="{{ asset('fidelizsms/files/assets/js/vartical-layout.min.js') }}" type="7a7fa98a142edbdad3e24ddf-text/javascript"></script>
 <script src="{{ asset('fidelizsms/files/assets/js/jquery.mCustomScrollbar.concat.min.js') }}" type="7a7fa98a142edbdad3e24ddf-text/javascript"></script>
 <script type="7a7fa98a142edbdad3e24ddf-text/javascript" src="{{ asset('fidelizsms/files/assets/js/script.js') }}"></script>
-@toastr_js
-@toastr_render
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @include('layouts.scripts')
 

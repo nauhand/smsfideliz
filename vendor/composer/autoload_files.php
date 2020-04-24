@@ -27,5 +27,7 @@ return array(
     'b6ec61354e97f32c0ae683041c78392a' => $vendorDir . '/scrivo/highlight.php/HighlightUtilities/functions.php',
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+    'e23faeee409e941dc9b4c80386209c39' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
+    'a806c12c6e24e7e4e900847766218dba' => $vendorDir . '/uxweb/sweet-alert/src/SweetAlert/functions.php',
     '101b35f72e0ccb1b5ef72aa86bba3ef9' => $vendorDir . '/yoeunes/toastr/src/helpers.php',
 );

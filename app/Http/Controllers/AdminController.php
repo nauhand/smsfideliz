@@ -12,9 +12,30 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
-        //
+        return view('fidelizsms.admin-dashboard');
+    }
+
+    public function rechargeattente()
+    {
+        return view('fidelizsms.recharge-attente');
+    }
+
+    public function rechargecompte()
+    {
+        return view('fidelizsms.recharge-compte');
+    }
+
+    public function ajouterclients()
+    {
+        return view('fidelizsms.add-clients');
     }
 
     /**

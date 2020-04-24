@@ -1,6 +1,14 @@
 "use strict";
 $(document).ready(function() {
 
+    $(".delete").on("submit", function(){
+        return confirm('Voulez vous vraiment supprimer ce compte ?');
+    });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+
     $('.NameCamp').select2();
 
     $("#p").hide();

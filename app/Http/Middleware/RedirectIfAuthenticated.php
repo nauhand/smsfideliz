@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
         return $next($request);*/
 
     if ($guard == "admin" && Auth::guard($guard)->check()) {
-                    return redirect('/admin/tableau-de-bord/comptes/liste-clients');
+                    return redirect('/admin/tableau-de-bord/');
                 }
     if ($guard == "subuser" && Auth::guard($guard)->check()) {
                     return redirect('/client/tableau-de-bord');

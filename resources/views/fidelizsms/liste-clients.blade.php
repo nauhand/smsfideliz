@@ -46,7 +46,7 @@ active
                                         </div>
                                         <div class="col-auto">
                                             <h6 class="text-muted m-b-10">Total clients</h6>
-                                            <h2 class="m-b-0">3</h2>
+                                            <h2 class="m-b-0">{{ $count }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@ active
                                         </div>
                                         <div class="col-auto">
                                             <h6 class="text-muted m-b-10">Clients actifs</h6>
-                                            <h2 class="m-b-0">1</h2>
+                                            <h2 class="m-b-0">{{ $disponible }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@ active
                                         </div>
                                         <div class="col-auto">
                                             <h6 class="text-muted m-b-10">Clients inactifs</h6>
-                                            <h2 class="m-b-0">1</h2>
+                                            <h2 class="m-b-0">{{ $indisponible }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ active
                             <div class="card-header">
                                 <h5></h5>
                                 <div class="card-header-right" style="margin-right: 11px;">
-                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus" style="color: white;"></i> Nouveau client</a>
+                                    <a href="{{ route('ajouter-clients') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus" style="color: white;"></i> Nouveau client</a>
                                 </div>
                             </div>
                             <div class="card-block">
@@ -106,19 +106,31 @@ active
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php($j = 1)
+                                            @foreach ($users as $value)
                                             <tr>
-                                                <td>1</td>
-                                                <td>nauhand225</td>
-                                                <td>Allou</td>
-                                                <td>Franck Olivier Nauhand</td>
-                                                <td>+22549490022</td>
-                                                <td><span class="badge badge-success">actif</span></td>
+                                                <td>{{ $j }}</td>
+                                                <td>{{ $value->username }}</td>
+                                                <td>{{ $value->nom }}</td>
+                                                <td>{{ $value->prenoms }}</td>
+                                                <td>{{ $value->telephone }}</td>
+                                                @if($value->statut == "activé")
+                                                <td><span class="badge badge-success">{{ $value->statut }}</span></td>
+                                                @else
+                                                <td><span class="badge badge-danger">{{ $value->statut }}</span></td>
+                                                @endif
                                                 <td>
-                                                    <a href="" class="btn btn-danger btn-sm float-right"><i class="fa fa-trash"></i> supprimer</a>
-                                                    <a href="" style="margin-right: 5px;" class="btn btn-success btn-sm float-right"><i class="fa fa-eye"></i> Détails</a>
-                                                    <a href="{{ route('ajouter-clients') }}" style="margin-right: 5px;" class="btn btn-primary btn-sm float-right"><i class="fa fa-edit"></i> Modifier</a>
+                                                    <form class="delete" action="{{route('editclient.update',$value->id)}}" method="post" style="display: inline;">
+                                                      @csrf
+                                                      @method('put')
+                                                      <button type="submit" style=":display: inline;" class="btn btn-danger btn-sm float-right"><i class="fa fa-trash"></i> supprimer</button>
+                                                    </form>
+                                                    <a href="{{route('addclient.show',$value->id)}}" style="margin-right: 5px;" class="btn btn-success btn-sm float-right"><i class="fa fa-eye"></i> Détails</a>
+                                                    <a href="{{route('addclient.edit',$value->id)}}" style="margin-right: 5px;" class="btn btn-primary btn-sm float-right"><i class="fa fa-edit"></i> Modifier</a>
                                                 </td>
                                             </tr>
+                                            @php($j++)
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
