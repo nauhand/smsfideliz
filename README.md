@@ -1,2 +1,2 @@
 # smsfideliz
-sms fideliz app
+sms fideliz app for creating campagne with route mobile sms
