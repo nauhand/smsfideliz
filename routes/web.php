@@ -38,7 +38,8 @@ Route::get('/client/tableau-de-bord/campagnes/détails-campagnes', 'ClientContro
 Route::get('/client/tableau-de-bord/campagnes/nouvelle-campagne/confirmation', 'ClientController@confirmcampagne')->name('confirm-campagne');
 
 // routes comptes clients et sous comptes
-Route::get('/client/tableau-de-bord/comptes/profile-clients', 'ClientController@profileclients')->name('profile-clients');
+Route::get('/client/tableau-de-bord/comptes/profile-clients', 'ProfileClientController@index')->name('profile-clients');
+Route::resource('editprofile', 'ProfileClientController')->parameters(['editprofile' => 'username']);
 Route::get('/client/tableau-de-bord/comptes/sous-compte/ajouter', 'ClientController@ajoutersouscompte')->name('ajouter-sous-compte');
 Route::get('/client/tableau-de-bord/comptes/sous-compte/liste', 'ClientController@listesouscompte')->name('liste-sous-compte');
 
@@ -57,5 +58,5 @@ Route::get('/admin/tableau-de-bord/finances/recharge-en-attente', 'AdminControll
 Route::get('/admin/tableau-de-bord/finances/recharger-compte', 'AdminController@rechargecompte')->name('recharger-compte');
 Route::get('/admin/tableau-de-bord/comptes/ajouter-clients', 'AdminController@ajouterclients')->name('ajouter-clients');
 Route::get('/admin/tableau-de-bord/comptes/liste-clients', 'CreateClientController@index')->name('liste-clients');
-Route::resource('addclient', 'CreateClientController');
-Route::resource('editclient', 'EditClientController');
+Route::resource('addclient', 'CreateClientController')->parameters(['addclient' => 'username']);
+Route::resource('editclient', 'EditClientController')->parameters(['editclient' => 'username']);

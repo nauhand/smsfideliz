@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Webmozart\Assert\regex;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use DB;
+use Session;
 
 class CreateClientController extends Controller
 {
@@ -139,7 +141,60 @@ class CreateClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'nom' => ['required', 'string', 'max:255'],
+            'prenoms' => ['required', 'string', 'max:255'],
+            'telephone' => ['required', 'unique:users,telephone,'.$id],
+            'email' => ['required', 'unique:users,email,'.$id, 'email'],
+            'pays' => ['required', 'string'],
+            'entreprise' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users,username,'.$id, 'regex:/^\S*$/u'],
+            'image' => ['image', 'mimes:jpeg,png,jpg'],
+        ]);
+
+        if ($request->hasFile('image')) {
+
+        $imageName = $request->input('nom') . '_' . $request->input('username') . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move(base_path() . '/public/ClientsImages', $imageName);
+
+             $image = $imageName;
+        
+        }else{
+
+            $image = "user.png";
+        }
+
+        $nom = $request->input('nom');
+        $prenoms = $request->input('prenoms');
+        $telephone = $request->input('telephone');
+        $email = $request->input('email');
+        $pays = $request->input('pays');
+        $entreprise = $request->input('entreprise');
+        $username = $request->input('username');
+
+        // mise à jour de l'utilisateur
+        $data = array('nom'=>$nom,
+                    'prenoms'=>$prenoms, 
+                'telephone'=>$telephone,
+                 'email'=>$email,
+                  'pays'=>$pays,
+                  'entreprise'=>$entreprise,
+                  'username'=>$username,
+                  'image'=>$image);
+
+        $is_update = DB::table('users')->where('id', $id)->update($data);
+
+        if ($is_update) {
+
+            Session::flash('success', 'Enregistrement éffectué !');
+            return redirect()->route('liste-clients');
+            
+        }else{
+
+            Session::flash('error', 'Mise à jour non effectué !');
+
+            return back();
+        }
     }
 
     /**

@@ -72,7 +72,7 @@ active
                                 <div class="card-block">
                                     <div class="row align-items-center m-l-0">
                                         <div class="col-auto">
-                                            <span style="font-size: 25px;"><i class="fas fa-pause" style="color: yellow;"></i></span>
+                                            <span style="font-size: 25px;"><i class="fas fa-pause" style="color: orange;"></i></span>
                                         </div>
                                         <div class="col-auto">
                                             <h6 class="text-muted m-b-10">Campagnes en attente</h6>
@@ -88,7 +88,7 @@ active
                             <div class="card-header">
                                 <h5></h5>
                                 <div class="card-header-right" style="margin-right: 11px;">
-                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus" style="color: white;"></i> Nouvelle campagne</a>
+                                    <a href="" class="btn btn-primary btn-sm" style="background-color: #0086fb; border-color: #0086fb;"><i class="fa fa-plus" style="color: white;"></i> Nouvelle campagne</a>
                                 </div>
                             </div>
                             <div class="card-block">

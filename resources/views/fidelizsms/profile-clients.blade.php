@@ -37,14 +37,14 @@
                                         <div class="col-md-12">
                                             <div class="media-left">
                                                 <a href="#" class="profile-image">
-                                                    <img class="user-img img-radius" src="{{ asset('fidelizsms/images/user.png') }}" width="150" alt="user-img">
+                                                    <img class="user-img img-radius" src="{{ URL::asset('ClientsImages/'.$value->image) }}" width="150" alt="user-img">
                                                 </a>
                                             </div>
                                             <div class="media-body row">
                                                 <div class="col-lg-12">
                                                     <div class="user-title">
-                                                        <h2 style="color: black;">Allou Franck Olivier Nauhand</h2>
-                                                        <span class="" style="color: black;">COM&TIC</span>
+                                                        <h2 style="color: black;">{{ $value->nom }} {{ $value->prenoms }}</h2>
+                                                        <span class="" style="color: black;">{{ $value->entreprise }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,23 +86,23 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <th scope="row">Nom</th>
-                                                                                    <td>Allou</td>
+                                                                                    <td>{{ $value->nom }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Prénom(s)</th>
-                                                                                    <td>Franck Olivier Nauhand</td>
+                                                                                    <td>{{ $value->prenoms }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Numéro mobile</th>
-                                                                                    <td>+22549490022</td>
+                                                                                    <td>{{ $value->telephone }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Adresse email</th>
-                                                                                    <td>allou12@live.fr</td>
+                                                                                    <td>{{ $value->email }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Pays</th>
-                                                                                    <td>Côte d'Ivoire</td>
+                                                                                    <td>{{ $value->pays }}</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -114,11 +114,11 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <th scope="row">Entreprise</th>
-                                                                                    <td>COM&TIC</td>
+                                                                                    <td>{{ $value->entreprise }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Nom d'utilisateur</th>
-                                                                                    <td>nauhand225</td>
+                                                                                    <td>{{ $value->username }}</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -130,95 +130,178 @@
                                                 </div>
                                             </div>
                                             <div class="edit-info">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="general-info">
-                                                            <form action="">
-                                                                <div class="row">
-                                                                    <div class="col-xl-10 offset-1">
-                                                                        <div class="card user-activity-card">
-                                                                            <div class="card-header text-center">
+                                                <form action="{{ route('editprofile.update', $value->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="card user-activity-card">
+                                                                <div class="card-header text-center">
+                                                                </div>
+                                                                <div class="card-block">
+                                                                    <div class="row">
+                                                                        <div class="col-xl-12 text-center">
+                                                                            <img src="{{ URL::asset('ClientsImages/'.$value->image) }}" id="blah" alt="votre photo" class="m-auto">
+                                                                        </div>
+                                                                        <div class="col-xl-12 text-center" style="margin-top: 10px;">
+                                                                            <div class="form-group">
+                                                                                <div class="custom-file">
+                                                                                    <div class="col-xl-12">
+                                                                                            <label class="btn-bs-file btn btn-sm btn-primary">
+                                                                                                Choisir photo &nbsp;&nbsp;<i class="fa fa-pencil-alt"></i>
+                                                                                                <input type="file" class="form-control @error('image') is-invalid @enderror" onchange="readURL(this);" id="loadImg" accept="image/*" value="{{ $value->image }}" autocomplete="off" name="image"/>
+                                                                                            </label>
+
+                                                                                            @error('image')
+                                                                                            <span class="invalid-feedback" role="alert" style="display: block;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="card-block">
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-6">
-                                                                                        <label for="" style="font-weight: bold;">Nom (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="text" class="form-control" placeholder="saisir nom">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-6">
-                                                                                        <label for="" style="font-weight: bold;;">Prénom(s) (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="text" class="form-control" placeholder="saisir prénom(s)">
-                                                                                        </div>
-                                                                                    </div>
+                                                                            <span style="font-size: 12px; color: red;">
+                                                                                Taille maximum : 10 mb <br>
+                                                                                Formats acceptés : jpg, jpeg, png
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8 ">
+                                                            <div class="general-info">
+                                                                    <div class="row">
+                                                                        <div class="col-xl-10 offset-1">
+                                                                            <div class="card user-activity-card">
+                                                                                <div class="card-header text-center">
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-6">
-                                                                                        <label for="" style="font-weight: bold;">Numéro mobile (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="text" class="form-control" placeholder="ex : +22549490022">
+                                                                                <div class="card-block" style="background-color: #f7fafc; padding: 25px;">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6">
+                                                                                            <label for="" style="font-weight: bold;">Nom (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{ $value->nom }}" required autocomplete="off" placeholder="saisir nom">
+                                                                                            </div>
+
+                                                                                            @error('nom')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                        <div class="col-xl-6">
+                                                                                            <label for="" style="font-weight: bold;;">Prénom(s) (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="text" class="form-control @error('prenoms') is-invalid @enderror" name="prenoms" value="{{ $value->prenoms }}" required autocomplete="off" placeholder="saisir prénom(s)">
+                                                                                            </div>
+
+                                                                                            @error('prenoms')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="col-xl-6">
-                                                                                        <label for="" style="font-weight: bold;">Adresse Email (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="email" class="form-control" placeholder="ex : comtic@info.africa">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6">
+                                                                                            <label for="" style="font-weight: bold;">Numéro mobile (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ $value->telephone }}" required autocomplete="off" placeholder="+22549490022">
+                                                                                            </div>
+
+                                                                                            @error('telephone')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                        <div class="col-xl-6">
+                                                                                            <label for="" style="font-weight: bold;">Adresse Email (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $value->email }}" required autocomplete="off" placeholder="ex: info@com-tic.africa">
+                                                                                            </div>
+
+                                                                                            @error('email')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-12">
-                                                                                        <label for="" style="font-weight: bold;">Pays (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                        <select class="selectpicker form-control">
-                                                                                              <option selected>Côte d'Ivoire</option>
-                                                                                              <option>Mali</option>
-                                                                                              <option>France</option>
-                                                                                              <option>Belgique</option>
-                                                                                              <option>Canada</option>
-                                                                                              <option>Bénin</option>
-                                                                                              <option>Togo</option>
-                                                                                            </select>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12">
+                                                                                            <label for="" style="font-weight: bold;">Pays (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                            <select class="selectpicker form-control @error('pays') is-invalid @enderror" data-style="btn-info" name="pays" value="{{ $value->pays }}" required autocomplete="pays" id="pays" readonly>
+                                                                                                  <option>Côte d'Ivoire</option>
+                                                                                                  <option>Mali</option>
+                                                                                                  <option>France</option>
+                                                                                                  <option>Belgique</option>
+                                                                                                  <option>Canada</option>
+                                                                                                  <option>Bénin</option>
+                                                                                                  <option>Gabon</option>
+                                                                                                  <option>Guinée</option>
+                                                                                                  <option>Congo</option>
+                                                                                                  <option>Ghana</option>
+                                                                                                  <option>Burkina Faso</option>
+                                                                                                </select>
+                                                                                            </div>
+
+                                                                                            @error('pays')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-12">
-                                                                                        <label for="" style="font-weight: bold;">Entreprise (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="text" class="form-control" placeholder="ex : COM&TIC">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12">
+                                                                                            <label for="" style="font-weight: bold;">Entreprise (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="text" class="form-control @error('entreprise') is-invalid @enderror" name="entreprise" value="{{ $value->entreprise }}" required autocomplete="off" placeholder="ex: COM&TIC">
+                                                                                            </div>
+
+                                                                                            @error('entreprise')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <hr>
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-12">
-                                                                                        <label for="" style="font-weight: bold;">Nom d'utilisateur (*)</label>
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <input type="text" class="form-control" placeholder="ex : africa225">
+                                                                                    <hr>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12">
+                                                                                            <label for="" style="font-weight: bold;">Nom d'utilisateur (*)</label>
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $value->username }}" required autocomplete="off" placeholder="saisir nom d'utilisateur">
+                                                                                            </div>
+
+                                                                                            @error('username')
+                                                                                            <span class="invalid-feedback" role="alert" style="display:block; margin-top:-15px;">
+                                                                                                <strong style="font-weight:normal; font-size:13px;">{{ $message }}</strong>
+                                                                                            </span>
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <br>
-                                                                                <div class="row">
-                                                                                    <div class="col-xl-4"></div>
-                                                                                    <div class="col-xl-4">
-                                                                                        <div class="input-group input-group-primary">
-                                                                                            <button type="submit" style="width:100%;"  class="btn btn-sm btn-success float-right" class="btn btn-primary"><i class="fa fa-edit"></i> Mise à jour</button>
+                                                                                    <br>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-3"></div>
+                                                                                        <div class="col-xl-6">
+                                                                                            <div class="input-group input-group-primary">
+                                                                                                <button type="submit" style="width:100%;"  class="btn btn-md btn-success float-right" class="btn btn-primary"><i class="fa fa-save"></i> Mise à jour client</button>
+                                                                                            </div>
                                                                                         </div>
+                                                                                        <div class="col-xl-3"></div>
                                                                                     </div>
-                                                                                    <div class="col-xl-4"></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -233,15 +316,15 @@
                                                         <div class="row text-center">
                                                             <div class="col-xl-3">
                                                                 <label for="" style="font-weight: bold;">Campagnes éffectuées</label><br>
-                                                                <span>100</span>
+                                                                <span>0</span>
                                                             </div>
                                                             <div class="col-xl-3">
                                                                 <label for="" style="font-weight: bold;">Total Contacts</label><br>
-                                                                <span>2500</span>
+                                                                <span>0</span>
                                                             </div>
                                                             <div class="col-xl-3">
                                                                 <label for="" style="font-weight: bold;">Total répertoires</label><br>
-                                                                <span>5</span>
+                                                                <span>0</span>
                                                             </div>
                                                             <div class="col-xl-3">
                                                                 <label for="" style="font-weight: bold;">Rapports demandés</label><br>

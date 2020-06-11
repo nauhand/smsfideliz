@@ -93,7 +93,7 @@
                                         <h5>Campagnes envoyées par mois</h5>
                                     </div>
                                     <div class="card-block">
-                                        <div id="adminchart" style="height:500px"></div>
+                                        <div id="adminchart" style="height:600px"></div>
                                     </div>
                                 </div>
                             </div>

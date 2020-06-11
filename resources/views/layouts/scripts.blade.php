@@ -349,9 +349,11 @@ categoryAxis.renderer.labels.template.verticalCenter = "middle";
 categoryAxis.renderer.labels.template.rotation = 270;
 categoryAxis.tooltip.disabled = true;
 categoryAxis.renderer.minHeight = 110;
+categoryAxis.renderer.grid.template.disabled = true;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
+valueAxis.renderer.grid.template.disabled = true;
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());

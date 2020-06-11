@@ -12,7 +12,6 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="keywords" content="">
 	<meta name="author" content="#">
-	<link rel="icon" href="https://colorlib.com//polygon/adminty/files/assets/images/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/bower_components/bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('fidelizsms/files/bower_components/font-awesome/css/font-awesome.min.css') }}">
@@ -81,9 +80,70 @@
 <script src="{{ asset('fidelizsms/files/assets/js/vartical-layout.min.js') }}" type="19d25c6e30a8cf6e3cbb84f9-text/javascript"></script>
 <script src="{{ asset('fidelizsms/files/assets/js/jquery.mCustomScrollbar.concat.min.js') }}" type="19d25c6e30a8cf6e3cbb84f9-text/javascript"></script>
 <script type="19d25c6e30a8cf6e3cbb84f9-text/javascript" src="{{ asset('fidelizsms/files/assets/js/script.js') }}"></script>
+<script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/select2.min.js') }}"></script>
+<script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/toastr.js') }}"></script>
+<script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/bootstrap-select.min.js') }}"></script>
+<script type="5aaa5f89c516d98bbdd768cf-text/javascript" src="{{ asset('fidelizsms/js/bootstrap-select.js') }}"></script>
+
+<script>
+
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-button");
+    const customTxt = document.getElementById("custom-text");
+
+    customBtn.addEventListener("click", function() {
+      realFileBtn.click();
+    });
+
+    realFileBtn.addEventListener("change", function() {
+      if (realFileBtn.value) {
+        customTxt.innerHTML = realFileBtn.value.match(
+          /[\/\\]([\w\d\s\.\-\(\)]+)$/
+        )[1];
+      } else {
+        customTxt.innerHTML = "No file chosen, yet.";
+      }
+    });
+
+</script>
+
+<script type="text/javascript"> 
+    const event = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let date = event.toLocaleDateString(undefined, options);
+
+        document.querySelector('.output').textContent = date;
+
+    function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah')
+                            .attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+    }
+
+    $("#inputGroupFile01").change(function(){
+      $("#custom-file-label").text(this.files[0].name);
+    });
+</script>
+
+<script>
+
+    $(document).ready(function() {
+
+        $('select').selectpicker();
+        //$('.my-select').selectpicker();
+        
+        });
+
+
+</script>
 
 <script src="{{ asset('fidelizsms/files/assets/js/rocket-loader.min.js') }}" data-cf-settings="19d25c6e30a8cf6e3cbb84f9-|49" defer=""></script>
-@toastr_js
-@toastr_render
 
 </html>

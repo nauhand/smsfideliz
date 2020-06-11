@@ -18,7 +18,7 @@
                 </a>
             </li>
             @endif
-            @if(Auth::guard('web')->check() or Auth::guard('subuser')->check())
+            @if(Auth::guard('web')->check() or Auth::guard('subuser')->check() or Auth::guard('admin')->check())
             <li class="pcoded-hasmenu @yield('is-active-camp')">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
@@ -39,7 +39,7 @@
                 </ul>
             </li>
             @endif
-            @if(Auth::guard('web')->check() or Auth::guard('subuser')->check())
+            @if(Auth::guard('web')->check() or Auth::guard('subuser')->check() or Auth::guard('admin')->check())
             <li class="@yield('is-active-rep')">
                 <a href="{{ route('repertoire') }}">
                     <span class="pcoded-micon"><i class="far fa-address-book"></i></span>

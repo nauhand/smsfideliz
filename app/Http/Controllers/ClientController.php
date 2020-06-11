@@ -14,7 +14,7 @@ class ClientController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:web,admin,subuser');
     }
 
     public function index()
@@ -55,11 +55,6 @@ class ClientController extends Controller
     public function confirmcampagne()
     {
         return view('fidelizsms.confirmation-page');
-    }
-
-    public function profileclients()
-    {
-        return view('fidelizsms.profile-clients');
     }
 
     public function ajoutersouscompte()
